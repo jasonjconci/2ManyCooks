@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+    <body>
+        <form action='/' method="post">
+            <input placeholder="Recipe name" name="name">
+            <input placeholder="Cook time" name="cook_time">
+            <input placeholder = "Difficulty (1-5)" name="difficulty">
+            <input  placeholder = "Rating (1-5)" name="rating">
+            <input type="submit" value="Submit">
+        </form>
+        {% for recipe in recipes %}
+            <div>
+                {{ "Name:",recipe[1] }}
+            </div>
+        {% endfor %}
+    </body>
+</html>

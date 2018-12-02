@@ -18,8 +18,7 @@ DROP TABLE IF EXISTS recipe;
 CREATE TABLE recipe (
 	id integer primary key autoincrement,
 	name text not null,
-	cook_time_lower_bound integer not null,
-	cook_time_upper_bound integer,
+	cook_time integer not null,
 	difficulty integer not null,
 	rating integer not null
 );
