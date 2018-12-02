@@ -17,7 +17,7 @@ def index():
 
 
     recipes = m.get_all_recipes()
-    return render_template('index.html', recipes=recipes)
+    return render_template('index.html', recipes=m.get_recipe_with_id(4))
     
 if __name__ == "__main__":
     app.run(debug=True)

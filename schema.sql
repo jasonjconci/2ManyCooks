@@ -102,3 +102,8 @@ CREATE TABLE recipe_equipment (
 	foreign key (recipe_id) references recipe(id),
 	foreign key (equipment_id) references equipment(id)
 );
+
+INSERT INTO protein VALUES ("steak"), ("chicken"), ("fish"), ("pork");
+INSERT INTO vegetable VALUES ("corn"), ("potato"), ("onion"), ("celery"), ("carrot");
+INSERT INTO starch VALUES ("brown rice"), ("white rice"), ("pasta"), ("bread");
+INSERT INTO equipment VALUES ("blender"), ("mixer"), ("stove"), ("microwave"), ("oven");
