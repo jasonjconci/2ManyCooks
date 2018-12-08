@@ -1,3 +1,13 @@
+/*
+This file is for the creation of clean tables, for the schema
+defined within this project. Namely, based on creation of ER
+diagrams, we have tables pertaining to actual data storage
+(entities), and tables pertaining to connecting data tables
+(relationships). All relationship tables are named with
+an underscore between the tables they connect, while entities
+are single-word table names.
+*/
+
 DROP TABLE IF EXISTS recipe_review;
 DROP TABLE IF EXISTS recipe_vegetable;
 DROP TABLE IF EXISTS recipe_protein;
