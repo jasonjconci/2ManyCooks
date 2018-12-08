@@ -12,6 +12,8 @@ from os import path
 ROOT = path.dirname(path.relpath((__file__)))
 
 
+
+
 '''
 Function for adding a recipe to our database's recipe table.
 USES: insert
@@ -22,6 +24,8 @@ def create_recipe(name, cook_time, difficulty, rating):
     cursor.execute("insert into recipe (name, cook_time, difficulty, rating) values(?,?,?,?);", (name, cook_time, difficulty, rating))
     con.commit()
     con.close()
+
+
 
 
 '''
@@ -66,6 +70,8 @@ def get_all_equipment():
 ### END FUNCTION BLOCK ###
 
 
+
+
 '''
 Function for getting vegetarian recipes.
 USES: Left outer join
@@ -76,6 +82,8 @@ def get_vegetarian_recipes():
     cursor.execute("SELECT * from recipe r left join recipe_protein rp where rp.protein_id is null;")
     recipes = cursor.fetchall()
     return recipes
+
+
 
 
 '''
