@@ -11,6 +11,7 @@ from os import path
 
 ROOT = path.dirname(path.relpath((__file__)))
 
+
 '''
 Function for adding a recipe to our database's recipe table.
 USES: insert
@@ -22,18 +23,47 @@ def create_recipe(name, cook_time, difficulty, rating):
     con.commit()
     con.close()
 
-def create_protein(protein)
 
 '''
-Function for getting all recipes
+Functions for getting all instances of individual entities
 USES: Most basic query
 '''
+### BEGIN FUNCTION BLOCK ###
 def get_all_recipes():
     con = sql.connect(path.join(ROOT, 'database.db'))
     cursor = con.cursor()
     cursor.execute("select * from recipe;")
     recipes = cursor.fetchall()
     return recipes
+
+def get_all_proteins():
+    con = sql.connect(path.join(ROOT, 'database.db'))
+    cursor = con.cursor()
+    cursor.execute("select * from protein;")
+    proteins = cursor.fetchall()
+    return proteins
+
+def get_all_vegetables():
+    con = sql.connect(path.join(ROOT, 'database.db'))
+    cursor = con.cursor()
+    cursor.execute("select * from vegetable;")
+    veg = cursor.fetchall()
+    return veg
+
+def get_all_starches():
+    con = sql.connect(path.join(ROOT, 'database.db'))
+    cursor = con.cursor()
+    cursor.execute("select * from starch;")
+    starches = cursor.fetchall()
+    return starches
+
+def get_all_equipment():
+    con = sql.connect(path.join(ROOT, 'database.db'))
+    cursor = con.cursor()
+    cursor.execute("select * from equipment;")
+    equip = cursor.fetchall()
+    return equip
+### END FUNCTION BLOCK ###
 
 
 '''
@@ -83,3 +113,4 @@ def get_recipe_with_id(id):
     recipes = cursor.fetchall()
     return recipe
 ### Function Block End ###
+
