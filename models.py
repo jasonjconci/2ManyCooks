@@ -22,6 +22,7 @@ def create_recipe(name, cook_time, difficulty, rating):
     con.commit()
     con.close()
 
+def create_protein(protein)
 
 '''
 Function for getting all recipes
