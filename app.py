@@ -9,9 +9,9 @@ def index():
     if request.method == "GET":
         pass
     elif request.method == "POST":
-        if request.form['submit_button'] == "Search":
+        if request.form['submit_button'] == "search":
             pass
-        elif request.form['submit_button'] == "Submit":
+        elif request.form['submit_button'] == "add":
             recipe_name = str(request.form.get('name'))
             cook_time = int(request.form.get('cook_time'))
             difficulty = int(request.form.get('difficulty'))
