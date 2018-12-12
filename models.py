@@ -42,10 +42,16 @@ USES: Left outer join
 def get_vegetarian_recipes():
     con = sql.connect(path.join(ROOT, 'database.db'))
     cursor = con.cursor()
-    cursor.execute("SELECT * from recipe r left join recipe_protein rp where rp.protein_id is null;")
+    cursor.execute("SELECT r.rid from recipe r left join recipe_protein rp where rp.protein_id is null;")
     recipes = cursor.fetchall()
     return recipes
 
+def get_recipe_with_id_protein(id):
+    con = sql.connect(path.join(ROOT, 'database.db'))
+    cursor = con.cursor()
+    cursor.execute("select * from recipe r join recipe_protein rp on(r.id = rp.recipe_id) join protein p on (p.id = rp.protein_id) where r.id = (?);", (id))
+    recipes = cursor.fetchall()
+    return recipe
 
 '''
 Functions for getting recipes containing a specific ingredient.
@@ -55,30 +61,14 @@ USES: standard inner join
 '''
 ### Function Block Begin ##
 def get_recipes_with_protein(protein):
-    con = sql.connect(path.join(ROOT, 'database.db'))
-    cursor = con.cursor()
     cursor.execute("SELECT * from recipe r join recipe_protein rp on (r.id = rp.recipe_id) where rp.protein_id = (select id from protein where name=(?))", (protein))
-    recipes = cursor.fetchall()
-    return recipes
+
 
 def get_recipes_with_vegetable(veg):
-    con = sql.connect(path.join(ROOT, 'database.db'))
-    cursor = con.cursor()
     cursor.execute("SELECT * from recipe r join recipe_vegetable rp on (r.id = rp.recipe_id) where rp.vegetable = (select id from vegetable where name=(?))", (veg))
-    recipes = cursor.fetchall()
-    return recipes
 
 def get_recipes_with_starch(starch):
-    con = sql.connect(path.join(ROOT, 'database.db'))
-    cursor = con.cursor()
     cursor.execute("SELECT * from recipe r join recipe_starch rp on (r.id = rp.recipe_id) where rp.starch = (select id from starch where name=(?))", (starch))
-    recipes = cursor.fetchall()
-    return recipes
 
-def get_recipe_with_id(id):
-    con = sql.connect(path.join(ROOT, 'database.db'))
-    cursor = con.cursor()
-    cursor.execute("select * from recipe r join recipe_protein rp on(r.id = rp.recipe_id) join protein p on (p.id = rp.protein_id) where r.id = (?);", (id))
-    recipes = cursor.fetchall()
-    return recipe
+
 ### Function Block End ###

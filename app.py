@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from flask_cors import CORS
 import models as m
 
@@ -9,10 +9,12 @@ def index():
     if request.method == "GET":
         pass
     elif request.method == "POST":
+        # If search button pressed, redirect to search page
         if request.form['submit_forward'] == "search":
-            return render_template('search.html')
+            return redirect(url_for('search_recipes'))
+        # If add button pressed, redirect to add page
         elif request.form['submit_forward'] == "add":
-            return render_template('addRecipe.html')
+            return redirect(url_for('add_recipe_index'))
         elif request.form['submit_forward'] == "home":
             recipes = m.get_all_recipes()
             return render_template('index.html', recipes=recipes)
@@ -24,6 +26,26 @@ def index():
             m.create_recipe(recipe_name, cook_time, difficulty, rating)
     recipes = m.get_all_recipes()
     return render_template('index.html', recipes=recipes)
-    
+
+
+
+@app.route('/add', methods=["GET", "POST"])
+def add_recipe_index():
+    if request.method == "GET":
+        pass
+    elif request.method == "POST":
+        if request.form['submit_forward'] == "addSubmit":
+            return redirect(url_for('index'))
+        elif request.form['submit_forward'] == "home":
+            return redirect(url_for('index'))
+    return render_template('addRecipe.html')
+
+
+
+@app.route('/search', methods=["GET", "POST"])
+def search_recipes():
+    return render_template('search.html')
+
+
 if __name__ == "__main__":
     app.run(debug=True)
