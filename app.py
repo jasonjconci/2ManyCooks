@@ -9,15 +9,21 @@ def index():
     if request.method == "GET":
         pass
     elif request.method == "POST":
-        recipe_name = str(request.form.get('name'))
-        cook_time = int(request.form.get('cook_time'))
-        difficulty = int(request.form.get('difficulty'))
-        rating = int(request.form.get('rating'))
-        m.create_recipe(recipe_name, cook_time, difficulty, rating)
-
-
+        if request.form['submit_forward'] == "search":
+            return render_template('search.html')
+        elif request.form['submit_forward'] == "add":
+            return render_template('addRecipe.html')
+        elif request.form['submit_forward'] == "home":
+            recipes = m.get_all_recipes()
+            return render_template('index.html', recipes=recipes)
+        elif request.form['submit_forward'] == "addSubmit":
+            recipe_name = str(request.form.get('name'))
+            cook_time = int(request.form.get('cook_time'))
+            difficulty = int(request.form.get('difficulty'))
+            rating = int(request.form.get('rating'))
+            m.create_recipe(recipe_name, cook_time, difficulty, rating)
     recipes = m.get_all_recipes()
-    return render_template('index.html', recipes=m.get_recipe_with_id(4))
+    return render_template('index.html', recipes=recipes)
     
 if __name__ == "__main__":
     app.run(debug=True)

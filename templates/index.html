@@ -13,11 +13,14 @@
                 </div>
             </div>
         </form>
+        <div class="grid-container">
         {% for recipe in recipes %}
-            <div id="Recipe_List" class="large-block">
-                {{ "Name:",recipe[1], "||Difficulty: ", recipe[3] }}
-            </div>
+            <span class="large-block recipe-item grid-item">
+                Name: <span>{{recipe[1]}}</span><br/>
+                Difficulty: <span>{{recipe[3]}}</span>
+            </span>
         {% endfor %}
+        </div>
     </body>
 </html>
 <style>
@@ -39,4 +42,19 @@
 .small-block input {
     float: right;
 }
+
+.recipe-item {
+    border: 1px solid black;
+    width: 200px;
+    padding: 15px;
+    border-radius: 25px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 2fr));
+    grid-gap: 5px;
+}
+
+
 </style>
