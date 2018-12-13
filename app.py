@@ -58,6 +58,7 @@ def index():
             print(searchEquipment)
             print(searchVegetarian)
             results = m.query_builder(searchName, searchDifficulty, searchProtein, searchVegetable, searchStarch, searchVegetarian, searchEquipment)
+            print(results)
             return render_template('search.html', recipes=results)
         else:
             req = request.form['submit_forward']
