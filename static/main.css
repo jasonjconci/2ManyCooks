@@ -1,0 +1,63 @@
+body:not(#Global_Header) {
+    padding: 25px;
+}
+
+#Global_Header {
+    width: 100%;
+    height: 200px;
+    align-content: center;
+    background: url("db_background.jpg") no-repeat fixed bottom;
+}
+
+#Global_Header img {
+    display : block;
+    margin : auto;
+}
+#Form_Wrapper {
+    align-content: center;
+    width: 500px;
+    height: auto;
+    display: flex;
+}
+
+.large-block {
+    margin-bottom: 25px;
+}
+.small-block {
+    margin: 5px;
+    margin-bottom: 10px;
+}
+.recipe-item {
+    align-content: center;
+    border: 1px solid black;
+    width: 150px;
+    padding: 15px;
+    border-radius: 30px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 2fr));
+    grid-gap: 5px;
+}
+button {
+    width: 200px;
+    height: 50px;
+    background: black;
+    color: white;
+    border-radius: 30px;
+    border: none;
+}
+button.small-button {
+    width: 100px;
+    height: 30px;
+    background: black;
+    color: white;
+    border-radius: 30px;
+    border: none;
+}
+.small-block input, select {
+    float: right;
+    width: 200px;
+}
+

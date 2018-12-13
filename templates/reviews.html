@@ -1,27 +1,14 @@
 <!doctype html>
 
-<style>
-
-    #Form_Wrapper {
-        align-content: center;
-        width: 300px;
-        height: auto;
-    }
-
-    .large-block {
-        margin-bottom: 25px;
-    }
-    .small-block {
-        margin: 5px;
-        margin-bottom: 10px;
-    }
-
-    .small-block input {
-        float: right;
-    }
-</style>
-
 <html>
+<head>
+    <link rel = "stylesheet"
+          type = "text/css"
+          href = "{{url_for('static', filename='main.css')}}" />
+</head>
+<div id="Global_Header">
+    <img src="{{url_for('static', filename='db_logo.png')}}" />
+</div>
 <body>
 <form action='/' method="post">
     <div class="large-block" id="Form_Wrapper">

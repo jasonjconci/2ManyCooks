@@ -24,6 +24,9 @@ def index():
             difficulty = int(request.form.get('difficulty'))
             rating = int(request.form.get('rating'))
             m.create_recipe(recipe_name, cook_time, difficulty, rating)
+        else:
+            recipe = m.get_all_recipes()[0]
+            return render_template('details.html', recipe=recipe)
     recipes = m.get_all_recipes()
     return render_template('index.html', recipes=recipes)
 

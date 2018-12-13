@@ -1,27 +1,13 @@
 <!doctype html>
-
-<style>
-
-#Form_Wrapper {
-    align-content: center;
-    width: 300px;
-    height: auto;
-}
-
-.large-block {
-    margin-bottom: 25px;
-}
-.small-block {
-    margin: 5px;
-    margin-bottom: 10px;
-}
-
-.small-block input {
-    float: right;
-}
-</style>
-
 <html>
+<head>
+    <link rel = "stylesheet"
+          type = "text/css"
+          href = "{{url_for('static', filename='main.css')}}" />
+</head>
+<div id="Global_Header">
+    <img src="{{url_for('static', filename='db_logo.png')}}" />
+</div>
     <body>
         <form action='/' method="post">
             <div class="large-block" id="Form_Wrapper">
@@ -35,16 +21,55 @@
                 </div>
                 <div id="Difficulty_Wrapper" class="small-block">
                     <label for="Difficulty">Difficulty (1-5)</label>
-                    <input id="Difficulty" name="difficulty">
-                </div>
-                <div id="Rating_Wrapper" class="small-block">
-                    <label for="Rating">Rating (1-5)</label>
-                    <input id="Rating" name="rating">
+                    <select id="Difficulty" name="difficulty">
+                        <option disabled selected> -- Select a Difficulty -- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
                 </div>
                 <div id="Protein_Wrapper" class="small-block">
-                    <label for="Rating">Protein)</label>
+                    <label for="Protein">Protein: </label>
                     <select id="Protein" name="protein">
-                        <option></option>
+                        <option disabled selected> -- Select a Protein -- </option>
+                        <option value="steak">Steak</option>
+                        <option value="chicken">Chicken</option>
+                        <option value="fish">Fish</option>
+                        <option value="pork">Pork</option>
+                    </select>
+                </div>
+                <div id="Vegetable_Wrapper" class="small-block">
+                    <label for="Vegetable">Vegetable: </label>
+                    <select id="Vegetable" name="protein">
+                        <option disabled selected> -- Select a Vegetable -- </option>
+                        <option value="corn">Corn</option>
+                        <option value="potato">Potato</option>
+                        <option value="onion">Onion</option>
+                        <option value="celery">Celery</option>
+                        <option value="carrot">Carrot</option>
+                    </select>
+                </div>
+                <div id="Starch_Wrapper" class="small-block">
+                    <label for="Starch">Starch: </label>
+                    <select id="Starch" name="starch">
+                        <option disabled selected> -- Select a Starch -- </option>
+                        <option value="brown_rice">Brown Rice</option>
+                        <option value="white_rice">White Rice</option>
+                        <option value="pasta">Pasta</option>
+                        <option value="bread">Bread</option>
+                    </select>
+                </div>
+                <div id="Equipment_Wrapper" class="small-block">
+                    <label for="Equipment">Equipment Needed: </label>
+                    <select id="Equipment" name="equipment">
+                        <option disabled selected> -- Select the Equipment -- </option>
+                        <option value="blender">Blender</option>
+                        <option value="mixer">Mixer</option>
+                        <option value="stove">Stove</option>
+                        <option value="microwave">Microwave</option>
+                        <option value="oven">Oven</option>
                     </select>
                 </div>
                 <div class="small-block">
