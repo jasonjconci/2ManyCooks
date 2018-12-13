@@ -46,10 +46,10 @@ def get_vegetarian_recipes():
     recipes = cursor.fetchall()
     return recipes
 
-def get_recipe_with_id_protein(id):
+def get_recipe_with_id_protein(name):
     con = sql.connect(path.join(ROOT, 'database.db'))
     cursor = con.cursor()
-    cursor.execute("select * from recipe r join recipe_protein rp on(r.id = rp.recipe_id) join protein p on (p.id = rp.protein_id) where r.id = (?);", (id))
+    cursor.execute("select * from recipe r join recipe_protein rp on(r.name = rp.recipe_name) join protein p on (p.name = rp.protein_name) where p.name = (?);", (name))
     recipes = cursor.fetchall()
     return recipe
 
@@ -69,6 +69,9 @@ def get_recipes_with_vegetable(veg):
 
 def get_recipes_with_starch(starch):
     cursor.execute("SELECT * from recipe r join recipe_starch rp on (r.id = rp.recipe_id) where rp.starch = (select id from starch where name=(?))", (starch))
-
-
 ### Function Block End ###
+
+def delete_all_recipe_reviews(recipe_name):
+    con = sql.connect(path.join(ROOT, 'database.db'))
+    cursor = con.cursor()
+    cursor.execute("DELETE FROM review re WHERE re.id IN (SELECT rr.review_id FROM recipe r join recipe_review rr on (r.name = rr.recipe_name) WHERE r.name=(?)))", (recipe_name))

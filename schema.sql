@@ -28,8 +28,7 @@ DROP TABLE IF EXISTS recipe;
 CREATE TABLE recipe (
 	name text primary key not null,
 	cook_time integer not null,
-	difficulty integer not null,
-	rating integer not null
+	difficulty integer not null
 );
 
 CREATE TABLE equipment (
@@ -54,7 +53,7 @@ CREATE TABLE instructions(
 );
 
 CREATE TABLE review (
-	id integer primary key,
+	id integer primary key autoincrement,
 	author text not null,
 	body text not null,
 	rating integer not null
@@ -63,7 +62,6 @@ CREATE TABLE review (
 CREATE TABLE recipe_review (
 	recipe_name text not null,
 	review_id integer not null,
-	post_time text not null,
 	foreign key (recipe_name) references recipe(name),
 	foreign key (review_id) references review(id)
 );
@@ -112,3 +110,6 @@ INSERT INTO protein VALUES ("steak"), ("chicken"), ("fish"), ("pork");
 INSERT INTO vegetable VALUES ("corn"), ("potato"), ("onion"), ("celery"), ("carrot");
 INSERT INTO starch VALUES ("brown rice"), ("white rice"), ("pasta"), ("bread");
 INSERT INTO equipment VALUES ("blender"), ("mixer"), ("stove"), ("microwave"), ("oven");
+
+
+INSERT INTO recipe VALUES("cheeseburger", 10, 4), ("fajitas",45, 5), ("spaghetti", 15, 2);
