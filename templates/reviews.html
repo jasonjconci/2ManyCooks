@@ -1,0 +1,43 @@
+<!doctype html>
+
+<style>
+
+    #Form_Wrapper {
+        align-content: center;
+        width: 300px;
+        height: auto;
+    }
+
+    .large-block {
+        margin-bottom: 25px;
+    }
+    .small-block {
+        margin: 5px;
+        margin-bottom: 10px;
+    }
+
+    .small-block input {
+        float: right;
+    }
+</style>
+
+<html>
+<body>
+<form action='/' method="post">
+    <div class="large-block" id="Form_Wrapper">
+        <div id="Recipe_Search_Wrapper" class="small-block">
+            <label for="Recipe_Search">Search: </label>
+            <input id="Recipe_Search" name="searchRecipe">
+        </div>
+        <div class="small-block">
+            <button id="Recipe_Search_Button" name="submit_forward" value="searchSubmit"> -- Search -- </button>
+        </div>
+    </div>
+    <div class="large-block" id="Back_Button">
+        <div class="small-block">
+            <button id="Go_Home_Button" name="submit_forward" value="home"> -- Go Back -- </button>
+        </div>
+    </div>
+</form>
+</body>
+</html>

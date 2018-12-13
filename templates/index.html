@@ -2,14 +2,18 @@
 
 
 <html>
+<div id="Global_Header">
+    <img src="{{url_for('static', filename='db_logo.png')}}" />
+</div>
     <body>
+
         <form action='/' method="post">
             <div class="large-block" id="Form_Wrapper">
                 <div class="small-block">
-                    <button id="addRecipeButton" name="submit_forward" value="add"> -- Add Recipe -- </button>
+                    <button id="addRecipeButton" name="submit_forward" value="add">Add Recipe</button>
                 </div>
                 <div class="small-block">
-                    <button id="Recipe_Search_Button" name="submit_forward" value="search"> -- Search -- </button>
+                    <button id="Recipe_Search_Button" name="submit_forward" value="search">Search</button>
                 </div>
             </div>
         </form>
@@ -18,17 +22,40 @@
             <span class="large-block recipe-item grid-item">
                 Name: <span>{{recipe[1]}}</span><br/>
                 Difficulty: <span>{{recipe[3]}}</span>
+                <div class="row">&nbsp;</div>
+                <div style="align-content: center; display: flex;">
+                    <button class="small-button" id="Recipe_Details_Button"
+                            name="submit_forward" value="details">Open</button>
+                    <div style="padding-left: 10px;"></div>
+                    <button class="small-button">Delete</button>
+                </div>
             </span>
+
         {% endfor %}
         </div>
     </body>
 </html>
 <style>
+    body:not(#Global_Header) {
+        padding: 25px;
+    }
 
+    #Global_Header {
+        width: 100%;
+        height: 200px;
+        align-content: center;
+        background: url("{{url_for('static', filename='db_background.jpg')}}") no-repeat fixed bottom;
+    }
+
+    #Global_Header img {
+        display : block;
+        margin : auto;
+    }
 #Form_Wrapper {
     align-content: center;
     width: 300px;
     height: auto;
+    display: flex;
 }
 
 .large-block {
@@ -41,13 +68,15 @@
 
 .small-block input {
     float: right;
+    margin: auto;
 }
 
 .recipe-item {
+    align-content: center;
     border: 1px solid black;
-    width: 200px;
+    width: 150px;
     padding: 15px;
-    border-radius: 25px;
+    border-radius: 30px;
 }
 
 .grid-container {
@@ -55,6 +84,22 @@
     grid-template-columns: repeat(auto-fill, minmax(210px, 2fr));
     grid-gap: 5px;
 }
+    button {
+        width: 200px;
+        height: 50px;
+        background: black;
+        color: white;
+        border-radius: 30px;
+        border: none;
+    }
+    button.small-button {
+        width: 100px;
+        height: 30px;
+        background: black;
+        color: white;
+        border-radius: 30px;
+        border: none;
+    }
 
 
 </style>
