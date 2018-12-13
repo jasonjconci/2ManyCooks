@@ -22,7 +22,6 @@ def index():
             recipe_name = str(request.form.get('name'))
             cook_time = int(request.form.get('cook_time'))
             difficulty = int(request.form.get('difficulty'))
-            rating = int(request.form.get('rating'))
             m.create_recipe(recipe_name, cook_time, difficulty, rating)
 
             protein = str(request.form.get('protein'))
