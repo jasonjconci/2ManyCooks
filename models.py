@@ -23,6 +23,54 @@ def create_recipe(name, cook_time, difficulty, rating):
     con.close()
 
 
+def create_recipe_protein(recipe_name, protein_name):
+    con = sql.connect(path.join(ROOT, 'database.db'))
+    cursor = con.cursor()
+    cursor.execute("insert into recipe_protein (recipe_name, protein_name) values(?,?);", (recipe_name, protein_name))
+    con.commit()
+    con.close()
+
+
+def create_recipe_vegetable(recipe_name, vegetable_name):
+    con = sql.connect(path.join(ROOT, 'database.db'))
+    cursor = con.cursor()
+    cursor.execute("insert into recipe_vegetable (recipe_name, vegetable_name) values(?,?);", (recipe_name, vegetable_name))
+    con.commit()
+    con.close()
+
+def create_recipe_equipment(recipe_name, equipment_name):
+    con = sql.connect(path.join(ROOT, 'database.db'))
+    cursor = con.cursor()
+    cursor.execute("insert into recipe_equipment (recipe_name, equipment_name) values(?,?);", (recipe_name, equipment_name))
+    con.commit()
+    con.close()
+
+
+def create_recipe_starch(recipe_name, starch_name):
+    con = sql.connect(path.join(ROOT, 'database.db'))
+    cursor = con.cursor()
+    cursor.execute("insert into recipe_starch (recipe_name, starch_name) values(?,?);", (recipe_name, starch_name))
+    con.commit()
+    con.close()
+
+def create_recipe_instructions(recipe_name, instructions):
+    instr_id = create_simple_instructions(instructions)
+    con = sql.connect(path.join(ROOT, 'database.db'))
+    cursor = con.cursor()
+    cursor.execute("insert into recipe_instructions (recipe_name, instructions_id) values (?,?);", (recipe_name, instructions))
+    con.commit()
+    con.close()
+
+def create_simple_instructions(instructions):
+    con = sql.connect(path.join(ROOT, 'database.db'))
+    cursor = con.cursor()
+    cursor.execute("insert into instructions (instructions_text) values (?);", (instructions))
+    cursor.execute("select * from instructions where instructions_text = (?);", (instructions))
+    instruction_id = cursor.fetchall()[0][0]
+    con.commit()
+    con.close()
+    return instruction_id
+
 '''
 Function for getting all recipes
 USES: Most basic query
@@ -74,4 +122,7 @@ def get_recipes_with_starch(starch):
 def delete_all_recipe_reviews(recipe_name):
     con = sql.connect(path.join(ROOT, 'database.db'))
     cursor = con.cursor()
-    cursor.execute("DELETE FROM review re WHERE re.id IN (SELECT rr.review_id FROM recipe r join recipe_review rr on (r.name = rr.recipe_name) WHERE r.name=(?)))", (recipe_name))
+    cursor.execute("DELETE FROM review re WHERE re.id IN (SELECT rr.review_id FROM recipe r join recipe_review rr on (r.name = rr.recipe_name) WHERE r.name=(?)));", (recipe_name))
+    cursor.execute("DELETE FROM recipe_review WHERE recipe_name=(?);", (recipe_name))
+    con.commit()
+    con.close()
