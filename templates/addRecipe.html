@@ -7,6 +7,9 @@
 </head>
 <div id="Global_Header">
     <img src="{{url_for('static', filename='db_logo.png')}}" />
+    <form action='/' method="post" id="Back_Button">
+        <button id="Go_Home_Button" name="submit_forward" value="home">Go Back</button>
+    </form>
 </div>
     <body>
         <form action='/' method="post">
@@ -42,6 +45,13 @@
                         <option value="fish">Fish</option>
                         <option value="pork">Pork</option>
                     </select>
+                    <label for="Protein_Amt">Amount: </label>
+                    <select id="Protein_Amt" name="protein_amt">
+                        <option value="4" selected>4 oz.</option>
+                        <option value="8">8 oz.</option>
+                        <option value="12">12 oz.</option>
+                        <option value="16">16 oz.</option>
+                    </select>
                 </div>
                 <div class="row">&nbsp;</div>
                 <div id="Vegetable_Wrapper" class="small-block">
@@ -54,6 +64,13 @@
                         <option value="celery">Celery</option>
                         <option value="carrot">Carrot</option>
                     </select>
+                    <label for="Vegetable_Amt">Amount: </label>
+                    <select id="Vegetable_Amt" name="vegetable_amt">
+                        <option value="4" selected>4 oz.</option>
+                        <option value="8">8 oz.</option>
+                        <option value="12">12 oz.</option>
+                        <option value="16">16 oz.</option>
+                    </select>
                 </div>
                 <div class="row">&nbsp;</div>
                 <div id="Starch_Wrapper" class="small-block">
@@ -64,6 +81,13 @@
                         <option value="white_rice">White Rice</option>
                         <option value="pasta">Pasta</option>
                         <option value="bread">Bread</option>
+                    </select>
+                    <label for="Starch_Amt">Amount: </label>
+                    <select id="Starch_Amt" name="starch_amt">
+                        <option value="4" selected>4 oz.</option>
+                        <option value="8">8 oz.</option>
+                        <option value="12">12 oz.</option>
+                        <option value="16">16 oz.</option>
                     </select>
                 </div>
                 <div class="row">&nbsp;</div>
@@ -86,12 +110,7 @@
                 </div>
                 <div class="row">&nbsp;</div>
                 <div class="small-block">
-                    <button id="Add_Button" name="submit_forward" value="addSubmit"> -- Add -- </button>
-                </div>
-            </div>
-            <div class="large-block" id="Back_Button">
-                <div class="small-block">
-                    <button id="Go_Home_Button" name="submit_forward" value="home"> -- Go Back -- </button>
+                    <button id="Add_Button" name="submit_forward" value="addSubmit">Add</button>
                 </div>
             </div>
         </form>

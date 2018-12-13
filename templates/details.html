@@ -9,16 +9,36 @@
 </head>
 <div id="Global_Header">
     <img src="{{url_for('static', filename='db_logo.png')}}" />
+    <form action='/' method="post" id="Back_Button">
+        <button id="Go_Home_Button" name="submit_forward" value="home">Go Back</button>
+    </form>
 </div>
 <body>
 <form action='/' method="post">
-    <div class="large-block">
-        {{recipe[0]}}
-    </div>
-    <div class="large-block" id="Back_Button">
-        <div class="small-block">
-            <button id="Go_Home_Button" name="submit_forward" value="home"> -- Go Back -- </button>
+    <div class="large-block" id="Recipe_Details_Wrapper">
+        <div class="small-block" id="Recipe_Name">
+
         </div>
+        <div class="small-block" id="Recipe_CookTime">
+
+        </div>
+        <div class="small-block" id="Recipe_Difficulty">
+
+        </div>
+        <div class="small-block" id="Recipe_Protein">
+
+        </div>
+        <div class="small-block" id="Recipe_Vegetable">
+
+        </div>
+        <div class="small-block" id="Recipe_Starch">
+
+        </div>
+        <div class="small-block" id="Recipe_Equipment">
+
+        </div>
+
+
     </div>
 </form>
 </body>

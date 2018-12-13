@@ -8,6 +8,9 @@
 </head>
 <div id="Global_Header">
     <img src="{{url_for('static', filename='db_logo.png')}}" />
+    <form action='/' method="post" id="Back_Button">
+        <button id="Go_Home_Button" name="submit_forward" value="home">Go Back</button>
+    </form>
 </div>
 <body>
 <form action='/' method="post">
@@ -18,11 +21,6 @@
         </div>
         <div class="small-block">
             <button id="Recipe_Search_Button" name="submit_forward" value="searchSubmit"> -- Search -- </button>
-        </div>
-    </div>
-    <div class="large-block" id="Back_Button">
-        <div class="small-block">
-            <button id="Go_Home_Button" name="submit_forward" value="home"> -- Go Back -- </button>
         </div>
     </div>
 </form>

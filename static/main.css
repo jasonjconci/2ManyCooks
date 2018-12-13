@@ -17,9 +17,9 @@ body {
     display : block;
     margin : auto;
 }
-#Form_Wrapper {
+#Form_Wrapper, .grid-container{
     align-content: center;
-    width: 500px;
+    width: 700px;
     height: auto;
     padding: 25px;
 }
@@ -61,11 +61,15 @@ button.small-button {
     border: none;
 }
 .small-block input, select {
-    float: right;
     width: 200px;
 }
 
 textarea {
     width: 100%;
+}
+#Back_Button{
+    position: absolute;
+    right: 25px;
+    top: 10px;
 }
 
