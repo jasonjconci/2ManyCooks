@@ -32,13 +32,12 @@
             </select>
         </div>
         <div class="row">&nbsp;</div>
-        <hr>
         <fieldset>
             <legend>Recipe Must Contain: </legend>
             <div id="Protein_Search_Wrapper" class="small-block">
                 <label for="Protein_Search">Protein: </label>
                 <select id="Protein_Search" name="proteinSearch">
-                    <option value="none" selected>None</option>
+                    <option value="none" selected>Whatever</option>
                     <option value="steak">Steak</option>
                     <option value="chicken">Chicken</option>
                     <option value="fish">Fish</option>
@@ -49,7 +48,7 @@
             <div id="Vegetable_Search_Wrapper" class="small-block">
                 <label for="Vegetable_Search">Vegetable: </label>
                 <select id="Vegetable_Search" name="vegetableSearch">
-                    <option value="none" selected>None</option>
+                    <option value="none" selected>Whatever</option>
                     <option value="corn">Corn</option>
                     <option value="potato">Potato</option>
                     <option value="onion">Onion</option>
@@ -61,7 +60,7 @@
             <div id="Starch_Search_Wrapper" class="small-block">
                 <label for="Starch_Search">Starch: </label>
                 <select id="Starch_Search" name="starchSearch">
-                    <option value="none" selected>None</option>
+                    <option value="none" selected>Whatever</option>
                     <option value="brown_rice">Brown Rice</option>
                     <option value="white_rice">White Rice</option>
                     <option value="pasta">Pasta</option>
@@ -69,10 +68,18 @@
                 </select>
             </div>
         </fieldset>
-        <fieldset>
+        <div class="row">&nbsp;</div>
+        <fieldset name="equipmentSearch">
             <legend>Please Select Which Equipment You Have</legend>
-
+            <label for="Has_Blender"><input id="Has_Blender" type="checkbox" checked>Blender</label>
+            <label for="Has_Mixer"><input id="Has_Mixer" type="checkbox" checked>Mixer</label>
+            <label for="Has_Stove"><input id="Has_Stove" type="checkbox" checked>Stove</label>
+            <label for="Has_Microwave"><input id="Has_Microwave" type="checkbox" checked>Microwave</label>
+            <label for="Has_Oven"><input id="Has_Oven" type="checkbox" checked>Oven</label>
         </fieldset>
+        <div class="row">&nbsp;</div>
+        <label for="Is_Vegetarian"><input id="Is_Vegetarian" type="checkbox" name="vegetarian">Vegetarian</label>
+        <div class="row">&nbsp;</div>
         <div class="small-block">
             <button id="Recipe_Search_Button" name="submit_forward" value="searchSubmit">Search</button>
         </div>
