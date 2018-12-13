@@ -74,7 +74,9 @@
         {% if reviews|length > 0 %}
             {% for review in reviews %}
                 <span class="large-block review-item grid-item">
-
+                    Author: <span>{{review[1].capitalize()}}</span><br/>
+                    Rating: <span>{{review[2]}}</span><br/>
+                    Text: <span>{{review[3]}}</span>
                 </span>
             {% endfor %}
         {% else %}
@@ -109,7 +111,6 @@
                 <textarea name="reviewText" id="Review_Text" rows="5">none</textarea>
             </div>
             <div class="row">&nbsp;</div>
-
                 <div class="small-block">
                     <button id="Review_Button" name="submit_forward" value={{"reviewSubmit" + recipe[0][0][0]}}>Submit</button>
                 </div>
