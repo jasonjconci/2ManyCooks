@@ -106,11 +106,11 @@
             <div class="row">&nbsp;</div>
             <div class="small-block" id="Review_Text_Wrapper">
                 <label for="Review_Text">Review Text: </label>
-                <textarea name="reviewText" id="Review_Text">none</textarea>
+                <textarea name="reviewText" id="Review_Text" rows="5">none</textarea>
             </div>
             <div class="row">&nbsp;</div>
             <div class="small-block">
-                <button id="Review_Button" name="submit_forward" value="reviewSubmit">Submit</button>
+                <button id="Review_Button" name="submit_forward" value={{"reviewSubmit" + recipe[0][0][0]}}>Submit</button>
             </div>
         </div>
     </div>
