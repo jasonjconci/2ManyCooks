@@ -34,7 +34,10 @@
                 <div style="align-content: center; display: flex;">
                     <form action='/' method="post">
                         <button class="small-button" id="Recipe_Details_Button"
-                                name="submit_forward" value={{recipe[0]}}>Open</button>
+                                name="submit_forward" value={{recipe[0]+"open"}}>Open</button>
+                        <div style="padding-right: 10px;">&nbsp;</div>
+                         <button class="small-button" id="Recipe_Delete_Button"
+                                 name="submit_forward" value={{recipe[0]+"delete"}}>Delete</button>
                     </form>
                 </div>
             </span>
