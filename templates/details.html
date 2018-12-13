@@ -78,8 +78,42 @@
                 </span>
             {% endfor %}
         {% else %}
-        <p>No Reviews for this Recipe</p>
+            <p>No Reviews for this Recipe</p>
         {% endif %}
     </div>
+    <div class="row">&nbsp;</div>
+    <hr>
+    <h3 class="centerMe">Leave a Review</h3>
+    <div class="row">&nbsp;</div>
+    <div action='/' method="post">
+        <div class="large-block" id="Recipe_Form">
+            <div class="small-block" id="Review_Author_Wrapper">
+                <label for="Review_Author">Author: </label>
+                <input type="text" id="Review_Author" name="reviewAuthor">
+            </div>
+            <div class="row">&nbsp;</div>
+            <div class="small-block" id="Review_Rating_Wrapper">
+                <label for="Review_Rating">Recipe Rating: </label>
+                <select name="reviewRating" id="Review_Rating">
+                    <option value="none" disabled selected> -- Please Select a Rating -- </option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <div class="row">&nbsp;</div>
+            <div class="small-block" id="Review_Text_Wrapper">
+                <label for="Review_Text">Review Text: </label>
+                <textarea name="reviewText" id="Review_Text">none</textarea>
+            </div>
+            <div class="row">&nbsp;</div>
+            <div class="small-block">
+                <button id="Review_Button" name="submit_forward" value="reviewSubmit">Submit</button>
+            </div>
+        </div>
+    </div>
+    </form>
 </body>
 </html>

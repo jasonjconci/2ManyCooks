@@ -49,6 +49,16 @@ body {
     border-bottom-right-radius: 30px;
 }
 
+.review-item {
+    align-content: center;
+    border: 2px solid black;
+    border-top: 20px solid black;
+    width: 400px;
+    padding: 15px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
 .grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(210px, 2fr));
@@ -98,7 +108,11 @@ button:hover {
 }
 
 .centerMe {
-    width: 100%;
+    width: auto;
     align-content: center;
     padding-left: 45%;
+}
+
+#Recipe_Form {
+    margin: 25px;
 }
