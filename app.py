@@ -39,7 +39,7 @@ def index():
                 m.create_recipe_starch(recipe_name, starch)
             if equipment != 'none':
                 m.create_recipe_equipment(recipe_name, equipment)
-            if instructions != 'none':
+            if instructions != '':
                 m.create_recipe_instructions(recipe_name, instructions)
 
 
