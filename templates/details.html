@@ -68,5 +68,18 @@
 
 
     </div>
+
+    <h3 class="centerMe">Reviews</h3>
+    <div class="grid-container" id="Recipe_Reviews">
+        {% if reviews|length > 0 %}
+            {% for review in reviews %}
+                <span class="large-block review-item grid-item">
+
+                </span>
+            {% endfor %}
+        {% else %}
+        <p>No Reviews for this Recipe</p>
+        {% endif %}
+    </div>
 </body>
 </html>
