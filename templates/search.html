@@ -84,6 +84,30 @@
             <button id="Recipe_Search_Button" name="submit_forward" value="searchSubmit">Search</button>
         </div>
     </div>
+    <h3 class="centerMe">Results</h3>
+    <div class="grid-container" id="Search_Results">
+        {% if len(recipes) > 0 %}
+            {% for recipe in recipes %}
+            <span class="large-block recipe-item grid-item">
+                    Name: <span>{{recipe[0].capitalize()}}</span><br/>
+                    Difficulty: <span>{{recipe[2]}}</span>
+                    <div class="row">&nbsp;</div>
+                    <div style="align-content: center; display: flex;">
+                        <form action='/' method="post">
+                            <button class="small-button" id="Recipe_Details_Button"
+                                    name="submit_forward" value={{recipe[0]+"open"}}>Open</button>
+                            <div style="padding-right: 10px;">&nbsp;</div>
+                             <button class="small-button" id="Recipe_Delete_Button"
+                                     name="submit_forward" value={{recipe[0]+"delete"}}>Delete</button>
+                        </form>
+                    </div>
+                </span>
+
+            {% endfor %}
+        {% else %}
+            <p>No Results</p>
+        {% endif %}
+    </div>
 </form>
 </body>
 </html>
