@@ -49,7 +49,7 @@ CREATE TABLE protein  (
 
 CREATE TABLE instructions(
 	id integer primary key,
-	instructions text not null
+	instructions_text text not null
 );
 
 CREATE TABLE review (
