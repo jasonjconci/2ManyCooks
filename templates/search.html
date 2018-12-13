@@ -15,12 +15,34 @@
 <body>
 <form action='/' method="post">
     <div class="large-block" id="Form_Wrapper">
-        <div id="Recipe_Search_Wrapper" class="small-block">
-            <label for="Recipe_Search">Search: </label>
-            <input id="Recipe_Search" name="searchRecipe">
+        <div id="Recipe_Search_Name_Wrapper" class="small-block">
+            <label for="Recipe_Search">Search by Name: </label>
+            <input id="Recipe_Search" name="searchRecipeName">
         </div>
+        <div id="Recipe_Search_Difficulty_Wrapper" class="small-block">
+            <label for="Recipe_Difficulty">Search Max Difficulty: </label>
+            <select id="Recipe_Difficulty" name="searchRecipeDifficulty">
+                <option disabled selected> -- Select a Difficulty -- </option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <!--<div id="Recipe_Search__Wrapper" class="small-block">-->
+            <!--<label for="Recipe_Difficulty">Search Max Difficulty: </label>-->
+            <!--<select id="Recipe_Difficulty" name="searchRecipeDifficulty">-->
+                <!--<option disabled selected> &#45;&#45; Select a Difficulty &#45;&#45; </option>-->
+                <!--<option value="1">1</option>-->
+                <!--<option value="2">2</option>-->
+                <!--<option value="3">3</option>-->
+                <!--<option value="4">4</option>-->
+                <!--<option value="5">5</option>-->
+            <!--</select>-->
+        <!--</div>-->
         <div class="small-block">
-            <button id="Recipe_Search_Button" name="submit_forward" value="searchSubmit"> -- Search -- </button>
+            <button id="Recipe_Search_Button" name="submit_forward" value="searchSubmit">Search</button>
         </div>
     </div>
 </form>

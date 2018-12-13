@@ -17,12 +17,19 @@ body {
     display : block;
     margin : auto;
 }
-#Form_Wrapper, .grid-container{
+#Form_Wrapper{
     align-content: center;
     width: 700px;
     height: auto;
     padding: 25px;
 }
+.grid-container {
+    align-content: center;
+    width: 90%;
+    height: auto;
+    padding: 25px;
+}
+
 
 .large-block {
     margin-bottom: 25px;
@@ -33,7 +40,7 @@ body {
 }
 .recipe-item {
     align-content: center;
-    border: 1px solid black;
+    border: 2px solid black;
     width: 150px;
     padding: 15px;
     border-radius: 30px;
@@ -73,3 +80,6 @@ textarea {
     top: 10px;
 }
 
+#Recipe_Details_Wrapper {
+    align-content: center;
+}

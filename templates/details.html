@@ -17,25 +17,30 @@
 <form action='/' method="post">
     <div class="large-block" id="Recipe_Details_Wrapper">
         <div class="small-block" id="Recipe_Name">
-
+            <h2>{{recipe[0][0][0].capitalize()}}</h2>
         </div>
+        <hr/>
+        <div class="row">&nbsp;</div>
         <div class="small-block" id="Recipe_CookTime">
-
+            <strong>Cook Time: </strong>{{recipe[0][0][1]}}
         </div>
         <div class="small-block" id="Recipe_Difficulty">
-
+            <strong>Difficulty: </strong>{{recipe[0][0][2]}}
         </div>
         <div class="small-block" id="Recipe_Protein">
-
+            <strong>Protein: </strong>{{recipe[1][0][1].capitalize()}} : {{recipe[1][0][2]}} oz.
         </div>
         <div class="small-block" id="Recipe_Vegetable">
-
+            <strong>Vegetable: </strong>{{recipe[2][0][1].capitalize()}} : {{recipe[2][0][2]}} oz.
         </div>
         <div class="small-block" id="Recipe_Starch">
-
+            <strong>Starch: </strong>{{recipe[3][0][1].capitalize()}} : {{recipe[3][0][2]}} oz.
         </div>
         <div class="small-block" id="Recipe_Equipment">
-
+            <strong>Equipment: </strong>{{recipe[4][0][1].capitalize()}}
+        </div>
+        <div class="small-block" id="Recipe_Instructions">
+            <p><strong>Instructions: </strong>{{recipe[5][0][1]}}</p>
         </div>
 
 
