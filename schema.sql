@@ -26,91 +26,86 @@ DROP TABLE IF EXISTS recipe;
 
 
 CREATE TABLE recipe (
-	id integer primary key autoincrement,
-	name text not null,
+	name text primary key not null,
 	cook_time integer not null,
 	difficulty integer not null,
 	rating integer not null
 );
 
 CREATE TABLE equipment (
-	id integer primary key autoincrement,
-	name text not null
+	name text primary key
 );
 
 CREATE TABLE starch (
-	id integer primary key autoincrement,
-	name text not null
+	name text primary key
 );
 
 CREATE TABLE vegetable  (
-	id integer primary key autoincrement,
-	name text not null
+	name text primary key
 );
 
 CREATE TABLE protein  (
-	id integer primary key autoincrement,
-	name text not null
+	name text primary key
 );
 
 CREATE TABLE instructions(
-	id integer primary key autoincrement,
+	id integer primary key,
 	instructions text not null
 );
 
 CREATE TABLE review (
-	id integer primary key autoincrement,
+	id integer primary key,
 	author text not null,
 	body text not null,
 	rating integer not null
 );
 
 CREATE TABLE recipe_review (
-	recipe_id integer not null,
+	recipe_name text not null,
 	review_id integer not null,
 	post_time text not null,
-	foreign key (recipe_id) references recipe(id),
+	foreign key (recipe_name) references recipe(name),
 	foreign key (review_id) references review(id)
 );
 
 CREATE TABLE recipe_instructions (
-	recipe_id integer not null,
+	recipe_name text not null,
 	instructions_id integer not null,
-	foreign key (recipe_id) references recipe(id),
+	foreign key (recipe_name) references recipe(name),
 	foreign key (instructions_id) references instructions(id)
 );
 
 
 CREATE TABLE recipe_protein (
-	recipe_id integer not null,
-	protein_id integer not null,
+	recipe_name text not null,
+	protein_name text not null,
 	amount integer not null,
-	foreign key (recipe_id) references recipe(id),
-	foreign key (protein_id) references protein(id)
+	foreign key (recipe_name) references recipe(name),
+	foreign key (protein_name) references protein(name)
 );
 
 CREATE TABLE recipe_starch (
-	recipe_id integer not null,
-	starch_id integer not null,
+	recipe_name text not null,
+	starch_name text not null,
 	amount integer not null,
-	foreign key (recipe_id) references recipe(id),
-	foreign key (starch_id) references starch(id)
+	foreign key (recipe_name) references recipe(name),
+	foreign key (starch_name) references starch(name)
 );
 
 CREATE TABLE recipe_vegetable (
-	recipe_id integer not null,
-	vegetable_id integer not null,
+	recipe_name text not null,
+	vegetable_name text not null,
 	amount integer not null,
-	foreign key (recipe_id) references recipe(id),
-	foreign key (vegetable_id) references vegetable(id)
+	foreign key (recipe_name) references recipe(name),
+	foreign key (vegetable_name) references vegetable(name)
 );
 
 
 CREATE TABLE recipe_equipment (
-	recipe_id integer not null,
-	equipment_id integer not null,
-	foreign key (recipe_id) references recipe(id),
-	foreign key (equipment_id) references equipment(id)
+	recipe_name text not null,
+	equipment_name integer not null,
+	foreign key (recipe_name) references recipe(name),
+	foreign key (equipment_name) references equipment(name)
 );
 
 INSERT INTO protein VALUES ("steak"), ("chicken"), ("fish"), ("pork");
