@@ -94,7 +94,6 @@ def get_vegetarian_recipes():
     recipes = cursor.fetchall()
     return recipes
 
-
 def get_all_recipe_information(recipe_name):
     con = sql.connect(path.join(ROOT, 'database.db'))
     cursor = con.cursor()
@@ -110,8 +109,7 @@ def get_all_recipe_information(recipe_name):
     re = cursor.fetchall()
     cursor.execute("SELECT ri.* FROM recipe r join recipe_instructions ri on (r.name = ri.recipe_name) where r.name=(?);", (recipe_name,))
     ri = cursor.fetchall()
-    return r, rp, rv, rs, re, ri
-
+    return [r, rp, rv, rs, re, ri]
 
 
 '''
@@ -122,16 +120,36 @@ USES: standard inner join
 '''
 ### Function Block Begin ##
 def get_recipes_with_protein(protein):
-    return "SELECT * from recipe r join recipe_protein rp on (r.id = rp.recipe_id) where rp.protein_id = " + protein
+    return "SELECT r.* from recipe r join recipe_protein rp on (r.name = rp.recipe_name) where rp.protein_id = " + protein
 
 def get_recipes_with_vegetable(veg):
-    return "SELECT * from recipe r join recipe_vegetable rp on (r.id = rp.recipe_id) where rp.vegetable = " + veg
+    return "SELECT r.* from recipe r join recipe_vegetable rv on (r.name = rv.recipe_name) where rp.vegetable = " + veg
 
 def get_recipes_with_starch(starch):
-    return "SELECT * from recipe r join recipe_starch rp on (r.id = rp.recipe_id) where rp.starch = " + starcj
+    return "SELECT r.* from recipe r join recipe_starch rs on (r.name = rs.recipe_name) where rp.starch = " + starch
 ### Function Block End ###
 
+def get_vegetarian_recipes():
+    return "SELECT r.* from recipe r left join recipe_protein rp where rp.protein_id is null"
 
+def get_recipe_max_difficity(difficulty):
+    return "SELECT r.* from recipe r where difficulty < " + difficulty
+
+
+
+
+def delete_recipe(recipe_name):
+    con = sql.connect(path.join(ROOT, 'database.db'))
+    cursor = con.cursor()
+    delete_all_recipe_reviews(recipe_name)
+    cursor.execute("DELETE FROM recipe_instructions WHERE recipe_name=(?);", (recipe_name,))
+    cursor.execute("DELETE FROM recipe_equipment WHERE recipe_name=(?);", (recipe_name,))
+    cursor.execute("DELETE FROM recipe_vegetable WHERE recipe_name=(?);", (recipe_name,))
+    cursor.execute("DELETE FROM recipe_starch WHERE recipe_name=(?);", (recipe_name,))
+    cursor.execute("DELETE FROM recipe_protein WHERE recipe_name=(?);", (recipe_name,))
+    cursor.execute("DELETE FROM recipe WHERE name=(?);", (recipe_name,))
+    con.commit()
+    con.close()
 
 '''
 Function for deleting recipe reviews and recipe_review relationships connecting the two.
@@ -140,7 +158,9 @@ USES: Subqueries
 def delete_all_recipe_reviews(recipe_name):
     con = sql.connect(path.join(ROOT, 'database.db'))
     cursor = con.cursor()
-    cursor.execute("DELETE FROM review re WHERE re.id IN (SELECT rr.review_id FROM recipe r join recipe_review rr on (r.name = rr.recipe_name) WHERE r.name=(?)));", (recipe_name))
-    cursor.execute("DELETE FROM recipe_review WHERE recipe_name=(?);", (recipe_name))
+    cursor.execute("DELETE FROM review WHERE id IN (SELECT rr.review_id FROM recipe r join recipe_review rr on (r.name = rr.recipe_name) WHERE r.name=(?));", (recipe_name,))
+    cursor.execute("DELETE FROM recipe_review WHERE recipe_name=(?);", (recipe_name,))
     con.commit()
     con.close()
+
+

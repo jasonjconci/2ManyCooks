@@ -7,7 +7,7 @@ app = Flask(__name__)
 @app.route('/', methods=["GET", "POST"])
 def index():
     if request.method == "GET":
-        pass
+        return render_template('index.html', recipes=m.get_all_recipes())
     elif request.method == "POST":
         # If search button pressed, redirect to search page
         if request.form['submit_forward'] == "search":
@@ -25,33 +25,45 @@ def index():
             m.create_recipe(recipe_name, cook_time, difficulty)
 
             protein = str(request.form.get('protein'))
-            #protein_amt = int(request.form.get('protein_amt'))
+            protein_amt = int(request.form.get('protein_amt'))
             vegetable = str(request.form.get('vegetable'))
-            #vegetable_amt = int(request.form.get('vegetable_amt'))
+            vegetable_amt = int(request.form.get('vegetable_amt'))
             starch = str(request.form.get('starch'))
-            #starch_amt = int(request.form.get('starch_amt'))
+            starch_amt = int(request.form.get('starch_amt'))
             equipment = str(request.form.get('equipment'))
             instructions = str(request.form.get('instructions'))
 
             if protein != 'none':
-                m.create_recipe_protein(recipe_name, protein, 8)
+                m.create_recipe_protein(recipe_name, protein, protein_amt)
             if vegetable != 'none':
-                m.create_recipe_vegetable(recipe_name, vegetable, 8)
+                m.create_recipe_vegetable(recipe_name, vegetable, vegetable_amt)
             if starch != 'none':
-                m.create_recipe_starch(recipe_name, starch, 8)
+                m.create_recipe_starch(recipe_name, starch, starch_amt)
             if equipment != 'none':
                 m.create_recipe_equipment(recipe_name, equipment)
             if instructions != '':
                 m.create_recipe_instructions(recipe_name, instructions)
-        else:
-            recipe_name = request.form['submit_forward']
-            recipe_details = m.get_all_recipe_information(recipe_name)
-            return render_template('details.html', recipe=recipe_details)
+        elif request.form['submit_forward'] == "recipeDelete":
+            print("Got a delete request")
 
-    recipes = m.get_all_recipes()
-    for each in m.get_all_recipe_information('sandwich'):
-        print(each)
-    return render_template('index.html', recipes=recipes)
+        elif request.form['submit_forward'] == "searchSubmit":
+            searchName = request.form.get("searchRecipeName")
+            searchDifficulty = request.form.get("searchRecipeDifficulty")
+            searchProtein = request.form.get("searchRecipeProtein")
+            searchVegetable = request.form.get("searchRecipeVegetable")
+            searchStarch = request.form.get("searchRecipeStarch")
+            searchVegetarian = request.form.getlist("searchRecipeVegetarian")
+            searchEquipment = request.form.getlist("searchRecipeEquipment")
+            print(searchEquipment)
+            print(searchVegetarian)
+        else:
+            req = request.form['submit_forward']
+            if req[-4:] == "open":
+                return render_template("details.html", recipe=m.get_all_recipe_information(req[:-4]))
+            else:
+                m.delete_recipe(req[:-6])
+                return redirect(url_for('index'))
+    return render_template('index.html', recipes=m.get_all_recipes())
 
 
 
