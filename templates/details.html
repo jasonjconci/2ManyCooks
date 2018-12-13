@@ -17,10 +17,6 @@
     <div class="large-block" id="Recipe_Details_Wrapper">
         <div class="small-block" id="Recipe_Name" style="display: flex;">
             <h2>{{recipe[0][0][0].capitalize()}}</h2>
-            <!--<div style="padding-right: 10px;">&nbsp;</div>-->
-            <!--<form action='/' method="post" id="Delete_Button_Wrapper">-->
-                <!--<button id="Delete_Button" name="submit_forward" value="recipeDelete">Delete</button>-->
-            <!--</form>-->
         </div>
         <hr/>
         <div class="row">&nbsp;</div>
@@ -68,9 +64,8 @@
 
 
     </div>
-
-    <h3 class="centerMe">Reviews</h3>
-    <div class="grid-container" id="Recipe_Reviews">
+    <h1 class="centerMe">Reviews</h1>
+    <div class="grid-container-review" id="Recipe_Reviews">
         {% if reviews|length > 0 %}
             {% for review in reviews %}
                 <span class="large-block review-item grid-item">
