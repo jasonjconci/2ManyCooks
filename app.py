@@ -54,8 +54,11 @@ def index():
             searchStarch = request.form.get("searchRecipeStarch")
             searchVegetarian = request.form.getlist("searchRecipeVegetarian")
             searchEquipment = request.form.getlist("searchRecipeEquipment")
+            print(len(searchName))
             print(searchEquipment)
             print(searchVegetarian)
+            results = m.query_builder(searchName, searchDifficulty, searchProtein, searchVegetable, searchStarch, searchVegetarian, searchEquipment)
+            return render_template('search.html', recipes=results)
         else:
             req = request.form['submit_forward']
             if req[-4:] == "open":

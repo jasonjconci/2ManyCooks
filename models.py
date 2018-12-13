@@ -112,6 +112,25 @@ def get_all_recipe_information(recipe_name):
     return [r, rp, rv, rs, re, ri]
 
 
+def query_builder(name, difficulty, protein, vegetable, starch, vegetarian, equip_list):
+    built_query = ''
+    if name != '':
+        built_query += get_recipe_with_name(name)
+        built_query += ' INTERSECT '
+    if difficulty != 'none':
+        built_query += get_recipe_max_difficulty(int(none))
+        built_query += ' INTERSECT '
+    if protein != 'none':
+        built_query += get_recipe_with_protein(protein)
+        built_query += ' INTERSECT '
+    built_query += ';'
+    print(built_query)
+    con = sql.connect(path.join(ROOT, 'database.db'))
+    cursor = con.cursor()
+    cursor.execute(built_query)
+    results = cursor.fetchall()
+    return results
+
 '''
 Functions for getting recipes containing a specific ingredient.
 For example, get_recipes_with_* queries the * table, finding
@@ -119,6 +138,9 @@ all recipes using a given member of the * table.
 USES: standard inner join
 '''
 ### Function Block Begin ##
+def get_recipe_with_name(name):
+    return "SELECT r.* from recipe r where name like \'%" + name + "\'"
+
 def get_recipes_with_protein(protein):
     return "SELECT r.* from recipe r join recipe_protein rp on (r.name = rp.recipe_name) where rp.protein_id = " + protein
 
@@ -134,6 +156,10 @@ def get_vegetarian_recipes():
 
 def get_recipe_max_difficity(difficulty):
     return "SELECT r.* from recipe r where difficulty < " + difficulty
+
+def get_recipe_without_equipment(equip):
+    return "SELECT r.* from recipe r join recipe_equipment re on (r.name = re.recipe_name) where equipment != " + equipment
+
 
 
 
