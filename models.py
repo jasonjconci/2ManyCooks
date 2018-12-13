@@ -117,12 +117,29 @@ def query_builder(name, difficulty, protein, vegetable, starch, vegetarian, equi
     if name != '':
         built_query += get_recipe_with_name(name)
         built_query += ' INTERSECT '
-    if difficulty != 'none':
-        built_query += get_recipe_max_difficulty(int(none))
+    if difficulty:
+        print("Got difficulty")
+        built_query += get_recipe_max_difficity(difficulty)
         built_query += ' INTERSECT '
     if protein != 'none':
-        built_query += get_recipe_with_protein(protein)
+        print("got protein")
+        built_query += get_recipes_with_protein(protein)
         built_query += ' INTERSECT '
+    if vegetable != 'none':
+        print("Got veg")
+        built_query += get_recipes_with_vegetable(vegetable)
+        built_query += ' INTERSECT '
+    if starch != 'none':
+        print("got starch")
+        built_query += get_recipes_with_starch(starch)
+        built_query += ' INTERSECT '
+    if len(vegetarian) > 0:
+        built_query += get_vegetarian_recipes()
+        built_query += ' INTERSECT '
+    for equip in equip_list:
+        built_query += get_recipe_without_equipment(equip)
+        built_query += ' INTERSECT '
+    built_query = built_query[:-11]
     built_query += ';'
     print(built_query)
     con = sql.connect(path.join(ROOT, 'database.db'))
@@ -139,26 +156,26 @@ USES: standard inner join
 '''
 ### Function Block Begin ##
 def get_recipe_with_name(name):
-    return "SELECT r.* from recipe r where name like \'%" + name + "\'"
+    return "SELECT r.* from recipe r where name like \'%" + name + "%\'"
 
 def get_recipes_with_protein(protein):
-    return "SELECT r.* from recipe r join recipe_protein rp on (r.name = rp.recipe_name) where rp.protein_id = " + protein
+    return "SELECT r.* from recipe r join recipe_protein rp on (r.name = rp.recipe_name) where rp.protein_name = \'" + protein + "\'"
 
 def get_recipes_with_vegetable(veg):
-    return "SELECT r.* from recipe r join recipe_vegetable rv on (r.name = rv.recipe_name) where rp.vegetable = " + veg
+    return "SELECT r.* from recipe r join recipe_vegetable rv on (r.name = rv.recipe_name) where rv.vegetable_name = \'" + veg + "\'"
 
 def get_recipes_with_starch(starch):
-    return "SELECT r.* from recipe r join recipe_starch rs on (r.name = rs.recipe_name) where rp.starch = " + starch
+    return "SELECT r.* from recipe r join recipe_starch rs on (r.name = rs.recipe_name) where rs.starch_name = \'" + starch + "\'"
 ### Function Block End ###
 
 def get_vegetarian_recipes():
-    return "SELECT r.* from recipe r left join recipe_protein rp where rp.protein_id is null"
+    return "SELECT r.* from recipe r left join recipe_protein rp on (r.name = rp.recipe_name) where rp.protein_name is null"
 
 def get_recipe_max_difficity(difficulty):
     return "SELECT r.* from recipe r where difficulty < " + difficulty
 
 def get_recipe_without_equipment(equip):
-    return "SELECT r.* from recipe r join recipe_equipment re on (r.name = re.recipe_name) where equipment != " + equipment
+    return "SELECT r.* from recipe r join recipe_equipment re on (r.name = re.recipe_name) where re.equipment_name != \'" + equipment + "\'"
 
 
 
