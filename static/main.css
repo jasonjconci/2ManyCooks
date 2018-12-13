@@ -1,12 +1,16 @@
-body:not(#Global_Header) {
-    padding: 25px;
+body {
+    padding: 0px !important;
+    margin: 0px !important;
 }
+
 
 #Global_Header {
     width: 100%;
     height: 200px;
     align-content: center;
     background: url("db_background.jpg") no-repeat fixed bottom;
+    padding: 0px !important;
+    margin-bottom: 10px;
 }
 
 #Global_Header img {
@@ -17,7 +21,7 @@ body:not(#Global_Header) {
     align-content: center;
     width: 500px;
     height: auto;
-    display: flex;
+    padding: 25px;
 }
 
 .large-block {
@@ -59,5 +63,9 @@ button.small-button {
 .small-block input, select {
     float: right;
     width: 200px;
+}
+
+textarea {
+    width: 100%;
 }
 

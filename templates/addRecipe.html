@@ -15,10 +15,12 @@
                     <label for="Recipe_Name">Recipe Name</label>
                     <input id="Recipe_Name" name="name">
                 </div>
+                <div class="row">&nbsp;</div>
                 <div id="Cook_Time_Wrapper" class="small-block">
                     <label for="Cook_Time">Cook Time</label>
                     <input id="Cook_Time" name="cook_time">
                 </div>
+                <div class="row">&nbsp;</div>
                 <div id="Difficulty_Wrapper" class="small-block">
                     <label for="Difficulty">Difficulty (1-5)</label>
                     <select id="Difficulty" name="difficulty">
@@ -30,20 +32,22 @@
                         <option value="5">5</option>
                     </select>
                 </div>
+                <div class="row">&nbsp;</div>
                 <div id="Protein_Wrapper" class="small-block">
                     <label for="Protein">Protein: </label>
                     <select id="Protein" name="protein">
-                        <option disabled selected> -- Select a Protein -- </option>
+                        <option value="none" selected>None</option>
                         <option value="steak">Steak</option>
                         <option value="chicken">Chicken</option>
                         <option value="fish">Fish</option>
                         <option value="pork">Pork</option>
                     </select>
                 </div>
+                <div class="row">&nbsp;</div>
                 <div id="Vegetable_Wrapper" class="small-block">
                     <label for="Vegetable">Vegetable: </label>
-                    <select id="Vegetable" name="protein">
-                        <option disabled selected> -- Select a Vegetable -- </option>
+                    <select id="Vegetable" name="vegetable">
+                        <option value="none" selected>None</option>
                         <option value="corn">Corn</option>
                         <option value="potato">Potato</option>
                         <option value="onion">Onion</option>
@@ -51,20 +55,22 @@
                         <option value="carrot">Carrot</option>
                     </select>
                 </div>
+                <div class="row">&nbsp;</div>
                 <div id="Starch_Wrapper" class="small-block">
                     <label for="Starch">Starch: </label>
                     <select id="Starch" name="starch">
-                        <option disabled selected> -- Select a Starch -- </option>
+                        <option value="none" selected>None</option>
                         <option value="brown_rice">Brown Rice</option>
                         <option value="white_rice">White Rice</option>
                         <option value="pasta">Pasta</option>
                         <option value="bread">Bread</option>
                     </select>
                 </div>
+                <div class="row">&nbsp;</div>
                 <div id="Equipment_Wrapper" class="small-block">
                     <label for="Equipment">Equipment Needed: </label>
                     <select id="Equipment" name="equipment">
-                        <option disabled selected> -- Select the Equipment -- </option>
+                        <option value="none" selected>None</option>
                         <option value="blender">Blender</option>
                         <option value="mixer">Mixer</option>
                         <option value="stove">Stove</option>
@@ -72,6 +78,13 @@
                         <option value="oven">Oven</option>
                     </select>
                 </div>
+                <div class="row">&nbsp;</div>
+                <div id="Instructions_Wrapper" class="small-block">
+                    <label for="Instructions">Recipe Instructions: </label>
+                    <div class="row">&nbsp;</div>
+                    <textarea id="Instructions" name="instructions" rows="10">none</textarea>
+                </div>
+                <div class="row">&nbsp;</div>
                 <div class="small-block">
                     <button id="Add_Button" name="submit_forward" value="addSubmit"> -- Add -- </button>
                 </div>
