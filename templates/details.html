@@ -31,19 +31,39 @@
             <strong>Difficulty: </strong>{{recipe[0][0][2]}}
         </div>
         <div class="small-block" id="Recipe_Protein">
-            {%<strong>Protein: </strong>{{recipe[1][0][1].capitalize()}} : {{recipe[1][0][2]}} oz.
+            {% if recipe[1]|length > 0 %}
+                <strong>Protein: </strong>{{recipe[1][0][1].capitalize()}} : {{recipe[1][0][2]}} oz.
+            {% else %}
+                <strong>Protein: </strong> No Protein
+            {% endif %}
         </div>
         <div class="small-block" id="Recipe_Vegetable">
-            <strong>Vegetable: </strong>{{recipe[2][0][1].capitalize()}} : {{recipe[2][0][2]}} oz.
+            {% if recipe[2]|length > 0 %}
+                <strong>Vegetable: </strong>{{recipe[2][0][1].capitalize()}} : {{recipe[2][0][2]}} oz.
+            {% else %}
+                <strong>Vegetable: </strong> No Vegetable
+            {% endif %}
         </div>
         <div class="small-block" id="Recipe_Starch">
-            <strong>Starch: </strong>{{recipe[3][0][1].capitalize()}} : {{recipe[3][0][2]}} oz.
+            {% if recipe[3]|length > 0 %}
+                <strong>Starch: </strong>{{recipe[3][0][1].capitalize()}} : {{recipe[3][0][2]}} oz.
+            {% else %}
+                <strong>Starch: </strong> No Starch
+            {% endif %}
         </div>
         <div class="small-block" id="Recipe_Equipment">
-            <strong>Equipment: </strong>{{recipe[4][0][1].capitalize()}}
+            {% if recipe[4]|length > 0 %}
+                <strong>Equipment: </strong>{{recipe[4][0][1].capitalize()}}
+            {% else %}
+                <strong>Equipment: </strong> No Equipment Needed
+            {% endif %}
         </div>
         <div class="small-block" id="Recipe_Instructions">
-            <p><strong>Instructions: </strong>{{recipe[5][0][1]}}</p>
+            {% if recipe[4]|length > 0 %}
+                <p><strong>Instructions: </strong>{{recipe[5][0][1]}}</p>
+            {% else %}
+                <p><strong>Instructions: </strong>Figure it out</p>
+            {% endif %}
         </div>
 
 

@@ -86,7 +86,7 @@
     </div>
     <h3 class="centerMe">Results</h3>
     <div class="grid-container" id="Search_Results">
-        {% if len(recipes) > 0 %}
+        {% if recipes|length > 0 %}
             {% for recipe in recipes %}
             <span class="large-block recipe-item grid-item">
                     Name: <span>{{recipe[0].capitalize()}}</span><br/>
