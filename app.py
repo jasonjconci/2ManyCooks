@@ -11,7 +11,7 @@ def index():
     elif request.method == "POST":
         # If search button pressed, redirect to search page
         if request.form['submit_forward'] == "search":
-            return redirect(url_for('search_recipes'))
+            return render_template('search.html', recipes=[])
         # If add button pressed, redirect to add page
         elif request.form['submit_forward'] == "add":
             return redirect(url_for('add_recipe_index'))
@@ -77,12 +77,6 @@ def add_recipe_index():
         elif request.form['submit_forward'] == "home":
             return redirect(url_for('index'))
     return render_template('addRecipe.html')
-
-
-
-@app.route('/search', methods=["GET", "POST"])
-def search_recipes():
-    return render_template('search.html')
 
 
 if __name__ == "__main__":
