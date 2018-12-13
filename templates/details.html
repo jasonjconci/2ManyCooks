@@ -85,7 +85,7 @@
     <hr>
     <h3 class="centerMe">Leave a Review</h3>
     <div class="row">&nbsp;</div>
-    <div action='/' method="post">
+    <form action='/' method="post">
         <div class="large-block" id="Recipe_Form">
             <div class="small-block" id="Review_Author_Wrapper">
                 <label for="Review_Author">Author: </label>
@@ -109,13 +109,12 @@
                 <textarea name="reviewText" id="Review_Text" rows="5">none</textarea>
             </div>
             <div class="row">&nbsp;</div>
-            <form action='/' method="post">
+
                 <div class="small-block">
                     <button id="Review_Button" name="submit_forward" value={{"reviewSubmit" + recipe[0][0][0]}}>Submit</button>
                 </div>
-            </form>
         </div>
-    </div>
+    </form>
 
 </body>
 </html>
