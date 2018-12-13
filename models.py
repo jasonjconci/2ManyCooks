@@ -148,7 +148,7 @@ def query_builder(name, rating, difficulty, protein, vegetable, starch, vegetari
         built_query += get_recipe_max_difficity(difficulty)
         built_query += ' INTERSECT '
     if rating:
-        built query += get_recipe_min_rating(rating)
+        built_query += get_recipe_min_rating(rating)
         built_query += ' INTERSECT '
     if protein != 'none':
         built_query += get_recipes_with_protein(protein)
@@ -187,7 +187,7 @@ def get_recipe_with_name(name):
     return "SELECT r.* from recipe r where name like \'%" + name + "%\'"
 
 def get_recipe_min_rating(rating):
-    return "SELECT r.* from recipe join recipe_review rr on (r.name join rr.recipe_name) join review rev on (rr.review_id = rev.id) group by r.name having avg(rev.rating) >= " + rating
+    return "SELECT r.* from recipe r join recipe_review rr on (r.name = rr.recipe_name) join review rev on (rr.review_id = rev.id) group by r.name having avg(rev.rating) >= " + rating
 
 def get_recipes_with_protein(protein):
     return "SELECT r.* from recipe r join recipe_protein rp on (r.name = rp.recipe_name) where rp.protein_name = \'" + protein + "\'"
