@@ -19,6 +19,7 @@
             <label for="Recipe_Search">Search by Name: </label>
             <input id="Recipe_Search" name="searchRecipeName">
         </div>
+        <div class="row">&nbsp;</div>
         <div id="Recipe_Search_Difficulty_Wrapper" class="small-block">
             <label for="Recipe_Difficulty">Search Max Difficulty: </label>
             <select id="Recipe_Difficulty" name="searchRecipeDifficulty">
@@ -30,17 +31,48 @@
                 <option value="5">5</option>
             </select>
         </div>
-        <!--<div id="Recipe_Search__Wrapper" class="small-block">-->
-            <!--<label for="Recipe_Difficulty">Search Max Difficulty: </label>-->
-            <!--<select id="Recipe_Difficulty" name="searchRecipeDifficulty">-->
-                <!--<option disabled selected> &#45;&#45; Select a Difficulty &#45;&#45; </option>-->
-                <!--<option value="1">1</option>-->
-                <!--<option value="2">2</option>-->
-                <!--<option value="3">3</option>-->
-                <!--<option value="4">4</option>-->
-                <!--<option value="5">5</option>-->
-            <!--</select>-->
-        <!--</div>-->
+        <div class="row">&nbsp;</div>
+        <hr>
+        <fieldset>
+            <legend>Recipe Must Contain: </legend>
+            <div id="Protein_Search_Wrapper" class="small-block">
+                <label for="Protein_Search">Protein: </label>
+                <select id="Protein_Search" name="proteinSearch">
+                    <option value="none" selected>None</option>
+                    <option value="steak">Steak</option>
+                    <option value="chicken">Chicken</option>
+                    <option value="fish">Fish</option>
+                    <option value="pork">Pork</option>
+                </select>
+            </div>
+            <div class="row">&nbsp;</div>
+            <div id="Vegetable_Search_Wrapper" class="small-block">
+                <label for="Vegetable_Search">Vegetable: </label>
+                <select id="Vegetable_Search" name="vegetableSearch">
+                    <option value="none" selected>None</option>
+                    <option value="corn">Corn</option>
+                    <option value="potato">Potato</option>
+                    <option value="onion">Onion</option>
+                    <option value="celery">Celery</option>
+                    <option value="carrot">Carrot</option>
+                </select>
+            </div>
+            <div class="row">&nbsp;</div>
+            <div id="Starch_Search_Wrapper" class="small-block">
+                <label for="Starch_Search">Starch: </label>
+                <select id="Starch_Search" name="starchSearch">
+                    <option value="none" selected>None</option>
+                    <option value="brown_rice">Brown Rice</option>
+                    <option value="white_rice">White Rice</option>
+                    <option value="pasta">Pasta</option>
+                    <option value="bread">Bread</option>
+                </select>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Please Select Which Equipment You Have</legend>
+
+        </fieldset>
         <div class="small-block">
             <button id="Recipe_Search_Button" name="submit_forward" value="searchSubmit">Search</button>
         </div>

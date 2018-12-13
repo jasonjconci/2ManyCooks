@@ -28,7 +28,7 @@
         <div class="grid-container">
         {% for recipe in recipes %}
             <span class="large-block recipe-item grid-item">
-                Name: <span>{{recipe[0]}}</span><br/>
+                Name: <span>{{recipe[0].capitalize()}}</span><br/>
                 Difficulty: <span>{{recipe[2]}}</span>
                 <div class="row">&nbsp;</div>
                 <div style="align-content: center; display: flex;">
