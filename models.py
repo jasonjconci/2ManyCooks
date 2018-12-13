@@ -18,7 +18,7 @@ USES: insert
 def create_recipe(name, cook_time, difficulty):
     con = sql.connect(path.join(ROOT, 'database.db'))
     cursor = con.cursor()
-    cursor.execute("insert into recipe (name, cook_time, difficulty, rating) values(?,?,?,?);", (name, cook_time, difficulty))
+    cursor.execute("insert into recipe (name, cook_time, difficulty) values(?,?,?);", (name, cook_time, difficulty))
     con.commit()
     con.close()
 
