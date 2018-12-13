@@ -9,6 +9,7 @@ def index():
     if request.method == "GET":
         return render_template('index.html', recipes=m.get_all_recipes())
     elif request.method == "POST":
+        print(request.form['submit_forward'])
         # If search button pressed, redirect to search page
         if request.form['submit_forward'] == "search":
             return render_template('search.html', recipes=[])
@@ -43,12 +44,11 @@ def index():
                 m.create_recipe_equipment(recipe_name, equipment)
             if instructions != '':
                 m.create_recipe_instructions(recipe_name, instructions)
-        elif request.form['submit_forward'] == "recipeDelete":
-            print("Got a delete request")
-
+        # If we're on the search page and someone has hit the submit button
         elif request.form['submit_forward'] == "searchSubmit":
             searchName = request.form.get("searchRecipeName")
             searchDifficulty = request.form.get("searchRecipeDifficulty")
+            searchRating = request.form.get("searchRecipeRating")
             searchProtein = request.form.get("searchRecipeProtein")
             searchVegetable = request.form.get("searchRecipeVegetable")
             searchStarch = request.form.get("searchRecipeStarch")
@@ -57,13 +57,29 @@ def index():
             print(len(searchName))
             print(searchEquipment)
             print(searchVegetarian)
-            results = m.query_builder(searchName, searchDifficulty, searchProtein, searchVegetable, searchStarch, searchVegetarian, searchEquipment)
+            results = m.query_builder(searchName, searchRating, searchDifficulty, searchProtein, searchVegetable, searchStarch, searchVegetarian, searchEquipment)
             print(results)
             return render_template('search.html', recipes=results)
+        # If we're submitting a review, 
+        elif request.form['submit_forward'][:12] == "reviewSubmit":
+            print("Got one")
+            reviewAuthor = request.form.get('reviewAuthor')
+            reviewRating = request.form.get('reviewRating')
+            reviewText = request.form.get('reviewText')
+            recipe_name = request.form['submit_forward'][12:]
+            print(recipe_name, reviewAuthor)
+            m.create_recipe_review(recipe_name, reviewAuthor, reviewRating, reviewText)
+            reviews = m.get_recipe_reviews(recipe_name)
+            print(reviews)
+            return render_template('details.html', recipe = m.get_all_recipe_information(recipe_name), reviews = reviews)
+        # Otherwise, we're trying to open or delete a recipe
         else:
             req = request.form['submit_forward']
+            # Open
             if req[-4:] == "open":
-                return render_template("details.html", recipe=m.get_all_recipe_information(req[:-4]))
+                recipe_name = req[:-4]
+                return render_template("details.html", recipe=m.get_all_recipe_information(recipe_name), reviews=m.get_recipe_reviews(recipe_name))
+            # Delete
             else:
                 m.delete_recipe(req[:-6])
                 return redirect(url_for('index'))
@@ -81,6 +97,7 @@ def add_recipe_index():
         elif request.form['submit_forward'] == "home":
             return redirect(url_for('index'))
     return render_template('addRecipe.html')
+
 
 
 if __name__ == "__main__":

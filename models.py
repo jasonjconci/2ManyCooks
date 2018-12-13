@@ -70,6 +70,27 @@ def create_simple_instructions(instructions):
     con.close()
     return instruction_id
 
+
+def create_recipe_review(recipe_name, author, rating, text):
+    con = sql.connect(path.join(ROOT, 'database.db'))
+    cursor = con.cursor()
+    cursor.execute("Insert into review (author, body, rating) values (?,?,?);", (author, text, rating))
+    cursor.execute("Select * from review where body = (?);", (text,))
+    review_id = cursor.fetchall()[0][0]
+    cursor.execute("insert into recipe_review (recipe_name, review_id) values (?,?);", (recipe_name, review_id))
+    con.commit()
+    con.close()
+
+
+def get_recipe_reviews(recipe_name):
+    con = sql.connect(path.join(ROOT, 'database.db'))
+    cursor = con.cursor()
+    cursor.execute("SELECT rev.* from recipe r join recipe_review rr on (r.name = rr.recipe_name) join review rev on (rev.id = rr.review_id) where r.name = (?);", (recipe_name,))
+    reviews = cursor.fetchall()
+    con.commit()
+    con.close()
+    return reviews
+
 ### END FUNCTION BLOCK FOR RECIPE CREATION ###
 
 '''
@@ -81,6 +102,8 @@ def get_all_recipes():
     cursor = con.cursor()
     cursor.execute("select * from recipe;")
     recipes = cursor.fetchall()
+    con.commit()
+    con.close()
     return recipes
 
 '''
@@ -92,6 +115,8 @@ def get_vegetarian_recipes():
     cursor = con.cursor()
     cursor.execute("SELECT r.rid from recipe r left join recipe_protein rp where rp.protein_id is null;")
     recipes = cursor.fetchall()
+    con.commit()
+    con.close()
     return recipes
 
 def get_all_recipe_information(recipe_name):
@@ -109,28 +134,29 @@ def get_all_recipe_information(recipe_name):
     re = cursor.fetchall()
     cursor.execute("SELECT ri.* FROM recipe r join recipe_instructions ri on (r.name = ri.recipe_name) where r.name=(?);", (recipe_name,))
     ri = cursor.fetchall()
+    con.commit()
+    con.close()
     return [r, rp, rv, rs, re, ri]
 
 
-def query_builder(name, difficulty, protein, vegetable, starch, vegetarian, equip_list):
+def query_builder(name, rating, difficulty, protein, vegetable, starch, vegetarian, equip_list):
     built_query = ''
     if name != '':
         built_query += get_recipe_with_name(name)
         built_query += ' INTERSECT '
     if difficulty:
-        print("Got difficulty")
         built_query += get_recipe_max_difficity(difficulty)
         built_query += ' INTERSECT '
+    if rating:
+        built query += get_recipe_min_rating(rating)
+        built_query += ' INTERSECT '
     if protein != 'none':
-        print("got protein")
         built_query += get_recipes_with_protein(protein)
         built_query += ' INTERSECT '
     if vegetable != 'none':
-        print("Got veg")
         built_query += get_recipes_with_vegetable(vegetable)
         built_query += ' INTERSECT '
     if starch != 'none':
-        print("got starch")
         built_query += get_recipes_with_starch(starch)
         built_query += ' INTERSECT '
     if len(vegetarian) > 0:
@@ -146,6 +172,8 @@ def query_builder(name, difficulty, protein, vegetable, starch, vegetarian, equi
     cursor = con.cursor()
     cursor.execute(built_query)
     results = cursor.fetchall()
+    con.commit()
+    con.close()
     return results
 
 '''
@@ -157,6 +185,9 @@ USES: standard inner join
 ### Function Block Begin ##
 def get_recipe_with_name(name):
     return "SELECT r.* from recipe r where name like \'%" + name + "%\'"
+
+def get_recipe_min_rating(rating):
+    return "SELECT r.* from recipe join recipe_review rr on (r.name join rr.recipe_name) join review rev on (rr.review_id = rev.id) group by r.name having avg(rev.rating) >= " + rating
 
 def get_recipes_with_protein(protein):
     return "SELECT r.* from recipe r join recipe_protein rp on (r.name = rp.recipe_name) where rp.protein_name = \'" + protein + "\'"
@@ -174,7 +205,7 @@ def get_vegetarian_recipes():
 def get_recipe_max_difficity(difficulty):
     return "SELECT r.* from recipe r where difficulty < " + difficulty
 
-def get_recipe_without_equipment(equip):
+def get_recipe_without_equipment(equipment):
     return "SELECT r.* from recipe r join recipe_equipment re on (r.name = re.recipe_name) where re.equipment_name != \'" + equipment + "\'"
 
 
@@ -193,6 +224,8 @@ def delete_recipe(recipe_name):
     cursor.execute("DELETE FROM recipe WHERE name=(?);", (recipe_name,))
     con.commit()
     con.close()
+    delete_all_recipe_reviews(recipe_name)
+
 
 '''
 Function for deleting recipe reviews and recipe_review relationships connecting the two.
