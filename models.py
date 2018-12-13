@@ -110,7 +110,7 @@ def get_all_recipe_information(recipe_name):
     re = cursor.fetchall()
     cursor.execute("SELECT ri.* FROM recipe r join recipe_instructions ri on (r.name = ri.recipe_name) where r.name=(?);", (recipe_name,))
     ri = cursor.fetchall()
-    return [r, rp, rv, rs, re, ri]
+    return r, rp, rv, rs, re, ri
 
 
 
